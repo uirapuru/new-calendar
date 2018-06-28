@@ -1,0 +1,26 @@
+{
+    "name": "uirapuru/new-calendar",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Grzegorz 'Uirapuru' Kaszuba",
+            "email": "uirapuruadg@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php" : ">=7.2",
+        "phpunit/phpunit": "^7.3@dev",
+        "doctrine/common": "^2.9@dev"
+    },
+    "require-dev": {
+        "behat/behat": "^3.4@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Calendar\\": "src/Calendar",
+            "Test\\": "tests"
+
+        }
+    }
+}
