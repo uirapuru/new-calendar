@@ -10,11 +10,12 @@
     "minimum-stability": "dev",
     "require": {
         "php" : ">=7.2",
-        "phpunit/phpunit": "^7.3@dev",
-        "doctrine/common": "^2.9@dev"
+        "doctrine/common": "^2.9@dev",
+        "ramsey/uuid": "^3.0@dev"
     },
     "require-dev": {
-        "behat/behat": "^3.4@dev"
+        "phpunit/phpunit": "^7.3",
+        "behat/behat": "3.4.1"
     },
     "autoload": {
         "psr-4": {
