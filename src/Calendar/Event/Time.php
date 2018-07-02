@@ -13,16 +13,17 @@ class Time
     /** @var int */
     protected $minutes;
 
-    public function __construct(int $hour, int $minutes)
+    protected function __construct(int $hour, int $minutes)
     {
-        Assert::range($hour, 0, 24);
+        Assert::range($hour, 0, 23);
         Assert::range($minutes, 0, 59);
 
         $this->hour = $hour;
         $this->minutes = $minutes;
     }
 
-    static public function str(string $time) : self {
+    static public function fromString(string $time) : self
+    {
         return new self(...sscanf($time, "%d:%d"));
     }
 
@@ -48,5 +49,10 @@ class Time
     public function lt(Time $to) : bool
     {
         return $this->toDateTime() < $to->toDateTime();
+    }
+
+    public function equals(Time $to) : bool
+    {
+        return $this->toDateTime() == $to->toDateTime();
     }
 }

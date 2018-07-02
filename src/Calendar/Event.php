@@ -14,18 +14,24 @@ class Event
     protected $id;
 
     /** @var ExpressionInterface */
-    protected $date;
+    protected $expression;
 
     /** @var TimeSpan */
     protected $time;
 
-    public function __construct(ExpressionInterface $date)
+    public function __construct(ExpressionInterface $expression, TimeSpan $time)
     {
-        $this->date = $date;
+        $this->expression = $expression;
+        $this->time = $time;
     }
 
     public function isMatching(DateTime $date) : bool
     {
-        return $this->date->isMatching($date);
+        return $this->expression->isMatching($date);
+    }
+
+    public function duration() : int
+    {
+        return $this->time->minutes();
     }
 }

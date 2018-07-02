@@ -3,6 +3,7 @@
 namespace Calendar\Event;
 
 use Exception;
+use Webmozart\Assert\Assert;
 
 class TimeSpan
 {
@@ -15,14 +16,30 @@ class TimeSpan
     /**
      * @throws Exception
      */
-    public function __construct(Time $from, Time $to)
+    protected function __construct(Time $from, Time $to)
     {
         if($from->gt($to)) {
             throw new Exception("End hour can't be grater than starting hour!");
         }
 
+        if($from->equals($to)) {
+            throw new Exception("Minimum duration is one minute!");
+        }
+
         $this->from = $from;
         $this->to = $to;
+    }
+
+    public static function fromString(string $string) : self
+    {
+        Assert::regex($string, "@\d+:\d+-\d+:\d+@");
+
+        list($start, $end) = explode("-", $string);
+
+        Assert::notNull($start);
+        Assert::notNull($end);
+
+        return new self(Time::fromString($start), Time::fromString($end));
     }
 
     public function minutes() : int
